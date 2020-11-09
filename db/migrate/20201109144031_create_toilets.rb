@@ -6,6 +6,9 @@ class CreateToilets < ActiveRecord::Migration[6.0]
       t.boolean :open_year_round
       t.boolean :handicap_accessible
       t.string :borough
+      t.integer :likes
+      t.float :latitude
+      t.float :longitude
 
       t.timestamps
     end
