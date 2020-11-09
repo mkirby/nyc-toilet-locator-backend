@@ -1,7 +1,8 @@
-class ToiletsController < ApplicationController
+class Api::V1::ToiletsController < ApplicationController
 
-    def index
-        toilets = Toilet.all
-        render json: toilets
+    def show
+        toilet = Toilet.find(params[:id])
+        render json: recipe
     end
+
 end

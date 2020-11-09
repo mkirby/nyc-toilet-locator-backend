@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :reviews
-  resources :toilets, only: [:index]
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  # resources :reviews
+  # resources :toilets, only: [:index]
+
+  namespace :api do
+    namespace :v1 do
+      resources :toilets, only: [:show]
+    end
+  end
 end

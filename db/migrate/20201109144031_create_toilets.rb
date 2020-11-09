@@ -3,7 +3,8 @@ class CreateToilets < ActiveRecord::Migration[6.0]
     create_table :toilets do |t|
       t.string :name
       t.string :location
-      t.string :open_year_round
+      t.boolean :open_year_round
+      t.boolean :handicap_accessible
       t.string :borough
 
       t.timestamps
