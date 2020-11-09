@@ -5,4 +5,9 @@ class Api::V1::ToiletsController < ApplicationController
         render json: toilet
     end
 
+    def index
+        toilets = Toilet.all 
+        render json: toilets
+    end
+
 end
