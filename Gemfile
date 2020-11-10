@@ -43,3 +43,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'faker', '~> 2.14'
 gem 'active_model_serializers', '~> 0.10.10'
 gem "geocoder", "~> 1.6"
+
+gem "google_search", "~> 1.2"

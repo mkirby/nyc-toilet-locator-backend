@@ -3002,123 +3002,53 @@ require_relative '../.api_key.rb'
 
 
 
-toilets.each do |toilet|
+# toilets.each do |toilet|
 
-    query = toilet[:"name"].gsub(" ", "%20").sub /\s*\(.+\)$/, ''
-    boroughQuery = toilet[:"borough"]
-    uri = URI.parse("https://maps.googleapis.com/maps/api/geocode/json?address=#{query}%20#{boroughQuery}%20NY&key=#{GOOGLE_MAP_KEY}")
-    response = Net::HTTP.get_response uri
-    json = JSON.parse(response.body)
+#     query = toilet[:"name"].gsub(" ", "%20").sub /\s*\(.+\)$/, ''
+#     boroughQuery = toilet[:"borough"]
+#     uri = URI.parse("https://maps.googleapis.com/maps/api/geocode/json?address=#{query}%20#{boroughQuery}%20NY&key=#{GOOGLE_MAP_KEY}")
+#     response = Net::HTTP.get_response uri
+#     json = JSON.parse(response.body)
 
-    hood = json["results"][0]["address_components"].select { |component| component if component["types"].include?("neighborhood")}
+#     hood = json["results"][0]["address_components"].select { |component| component if component["types"].include?("neighborhood")}
     
-    if hood.empty?
-        hood = "No Neighborhood"
-    else
-        hood = hood[0]["long_name"]
-    end
+#     if hood.empty?
+#         hood = "No Neighborhood"
+#     else
+#         hood = hood[0]["long_name"]
+#     end
     
-    if toilet[:"handicap_accessible"]
+#     if toilet[:"handicap_accessible"]
 
-        Toilet.create(
-            name:toilet[:"name"].sub(/\s*\(.+\)$/, ''),
-            location:toilet[:"location"],
-            handicap_accessible: true,
-            open_year_round:toilet[:"open_year_round"],
-            borough:toilet[:"borough"],
-            latitude:json["results"][0]["geometry"]["location"]["lat"],
-            longitude:json["results"][0]["geometry"]["location"]["lng"],
-            address:json["results"][0]["formatted_address"],
-            neighborhood: hood,
-            likes: rand(1..50)
-        )
-    else 
+#         Toilet.create(
+#             name:toilet[:"name"].sub(/\s*\(.+\)$/, ''),
+#             location:toilet[:"location"],
+#             handicap_accessible: true,
+#             open_year_round:toilet[:"open_year_round"],
+#             borough:toilet[:"borough"],
+#             latitude:json["results"][0]["geometry"]["location"]["lat"],
+#             longitude:json["results"][0]["geometry"]["location"]["lng"],
+#             address:json["results"][0]["formatted_address"],
+#             neighborhood: hood,
+#             likes: rand(1..50)
+#         )
+#     else 
         
-        Toilet.create(
-            name:toilet[:"name"].sub(/\s*\(.+\)$/, ''), 
-            location:toilet[:"location"], 
-            handicap_accessible: false, 
-            open_year_round:toilet[:"open_year_round"], 
-            borough:toilet[:"borough"],
-            latitude:json["results"][0]["geometry"]["location"]["lat"],
-            longitude:json["results"][0]["geometry"]["location"]["lng"],
-            address:json["results"][0]["formatted_address"],
-            neighborhood: hood,
-            likes: rand(1..50)
-        )
-    end
-end
+#         Toilet.create(
+#             name:toilet[:"name"].sub(/\s*\(.+\)$/, ''), 
+#             location:toilet[:"location"], 
+#             handicap_accessible: false, 
+#             open_year_round:toilet[:"open_year_round"], 
+#             borough:toilet[:"borough"],
+#             latitude:json["results"][0]["geometry"]["location"]["lat"],
+#             longitude:json["results"][0]["geometry"]["location"]["lng"],
+#             address:json["results"][0]["formatted_address"],
+#             neighborhood: hood,
+#             likes: rand(1..50)
+#         )
+#     end
+# end
 
-# {
-#    "results" : [
-#       {
-#          "address_components" : [
-#             {
-#                "long_name" : "100% Playground",
-#                "short_name" : "100% Playground",
-#                "types" : [ "establishment", "park", "point_of_interest" ]
-#             },
-#             {
-#                "long_name" : "East 100th Street",
-#                "short_name" : "East 100th Street",
-#                "types" : [ "route" ]
-#             },
-#             {
-#                "long_name" : "Canarsie",
-#                "short_name" : "Canarsie",
-#                "types" : [ "neighborhood", "political" ]
-#             },
-#             {
-#                "long_name" : "Brooklyn",
-#                "short_name" : "Brooklyn",
-#                "types" : [ "political", "sublocality", "sublocality_level_1" ]
-#             },
-#             {
-#                "long_name" : "Kings County",
-#                "short_name" : "Kings County",
-#                "types" : [ "administrative_area_level_2", "political" ]
-#             },
-#             {
-#                "long_name" : "New York",
-#                "short_name" : "NY",
-#                "types" : [ "administrative_area_level_1", "political" ]
-#             },
-#             {
-#                "long_name" : "United States",
-#                "short_name" : "US",
-#                "types" : [ "country", "political" ]
-#             },
-#             {
-#                "long_name" : "11236",
-#                "short_name" : "11236",
-#                "types" : [ "postal_code" ]
-#             }
-#          ],
-#          "formatted_address" : "100% Playground, East 100th Street, Brooklyn, NY 11236, USA",
-#          "geometry" : {
-#             "location" : {
-#                "lat" : 40.6465901,
-#                "lng" : -73.89905539999999
-#             },
-#             "location_type" : "GEOMETRIC_CENTER",
-#             "viewport" : {
-#                "northeast" : {
-#                   "lat" : 40.64793908029149,
-#                   "lng" : -73.89770641970848
-#                },
-#                "southwest" : {
-#                   "lat" : 40.6452411197085,
-#                   "lng" : -73.90040438029149
-#                }
-#             }
-#          },
-#          "place_id" : "ChIJNwvvtedcwokR-CqHxddTvE8",
-#          "plus_code" : {
-#             "compound_code" : "J4W2+J9 Brooklyn, NY, USA",
-#             "global_code" : "87G8J4W2+J9"
-#          },
-#          "types" : [ "establishment", "park", "point_of_interest" ]
-#       }
-#    ],
-#    "status" : "OK"
-# }
+4000.times do 
+    Review.create(toilet:Toilet.all.sample, content:Faker::Restaurant.review, name: Faker::Name.name, rating:rand(1..5), date:Faker::Date.between(from: '2018-01-01', to: '2020-11-08'), image:"placeholder")
+end
