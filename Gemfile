@@ -44,4 +44,6 @@ gem 'faker', '~> 2.14'
 gem 'active_model_serializers', '~> 0.10.10'
 gem "geocoder", "~> 1.6"
 
-gem "google_search", "~> 1.2"
+
+
+gem "will_paginate", "~> 3.3"

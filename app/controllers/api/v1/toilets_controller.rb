@@ -6,7 +6,7 @@ class Api::V1::ToiletsController < ApplicationController
     end
 
     def index
-        toilets = Toilet.all 
+        toilets = Toilet.paginate(page: params[:page], per_page: 8)
         render json: toilets
     end
 
