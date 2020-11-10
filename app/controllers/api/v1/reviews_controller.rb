@@ -9,4 +9,16 @@ class Api::V1::ReviewsController < ApplicationController
       reviews = Review.all
       render json: reviews
   end
+
+  def create
+    review = Review.create(reviewParams)
+    render json: review
+  end
+
+  private
+
+  def reviewParams
+    params.permit(:toilet_id, :content, :date, :name, :rating, :image)
+  end
+
 end
