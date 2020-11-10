@@ -83,7 +83,6 @@ GEM
       json
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
-    image_suckr (0.2.0)
     json (2.3.1)
     json (2.3.1-java)
     jsonapi-renderer (0.2.2)
@@ -154,8 +153,6 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.20.3, < 2.0)
     rake (13.0.1)
-    random_images (0.0.6)
-      nokogiri (>= 1.4.2)
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -198,13 +195,11 @@ DEPENDENCIES
   faker (~> 2.14)
   geocoder (~> 1.6)
   google_search (~> 1.2)
-  image_suckr (~> 0.2.0)
   listen (~> 3.2)
   pg (>= 0.18, < 2.0)
   puma (~> 4.1)
   rack-cors
   rails (~> 6.0.3, >= 6.0.3.4)
-  random_images (~> 0.0.6)
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data
