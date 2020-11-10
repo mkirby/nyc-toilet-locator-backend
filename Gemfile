@@ -47,3 +47,5 @@ gem "geocoder", "~> 1.6"
 
 
 gem "will_paginate", "~> 3.3"
+
+# gem "api-pagination", "~> 4.8"
