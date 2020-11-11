@@ -18,4 +18,17 @@ class Api::V1::ToiletsController < ApplicationController
         end
         render json: {toilets: toilets, lastPage: lastPage, neighborhoods: neighborhoods}
     end
+
+     
+    def create
+    toilet = Toilet.create(toiletParams)
+    render json: toilet
+    end
+
+    private
+
+    def toiletParams
+        params.permit(:name, :location, :open_year_round, :handicap_accessible, :borough, :likes, :latitude, :longitude, :address, :neighborhood, :image)
+    end
+
 end

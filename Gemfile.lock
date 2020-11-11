@@ -61,7 +61,8 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
       zeitwerk (~> 2.2, >= 2.2.2)
-    api-pagination (4.8.2)
+    addressable (2.7.0)
+      public_suffix (>= 2.0.2, < 5.0)
     bootsnap (1.5.0)
       msgpack (~> 1.0)
     builder (3.2.4)
@@ -70,6 +71,8 @@ GEM
       activesupport
     concurrent-ruby (1.1.7)
     crass (1.0.6)
+    css_parser (1.7.1)
+      addressable
     erubi (1.9.0)
     faker (2.14.0)
       i18n (>= 1.6, < 2)
@@ -82,6 +85,10 @@ GEM
       activesupport (>= 4.2.0)
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
+    image_scraper (0.1.8)
+      css_parser
+      nokogiri
+      rails
     jsonapi-renderer (0.2.2)
     listen (3.2.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
@@ -117,6 +124,7 @@ GEM
     pg_search (2.3.4)
       activerecord (>= 5.2)
       activesupport (>= 5.2)
+    public_suffix (4.0.6)
     puma (4.3.6)
       nio4r (~> 2.0)
     puma (4.3.6-java)
@@ -191,11 +199,11 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers (~> 0.10.10)
-  api-pagination (~> 4.8)
   bootsnap (>= 1.4.2)
   byebug
   faker (~> 2.14)
   geocoder (~> 1.6)
+  image_scraper (~> 0.1.8)
   listen (~> 3.2)
   pg (>= 0.18, < 2.0)
   pg_search (~> 2.3)
