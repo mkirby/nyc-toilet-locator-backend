@@ -18,7 +18,7 @@ class Api::V1::ReviewsController < ApplicationController
   private
 
   def reviewParams
-    params.permit(:toilet_id, :content, :date, :name, :rating, :image)
+    params.permit(:toilet_id, :content, :date, :name, :rating)
   end
 
 end
