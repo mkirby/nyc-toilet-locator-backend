@@ -3,6 +3,7 @@ class Toilet < ApplicationRecord
     geocoded_by :locationAddress
     reverse_geocoded_by :latitude, :longitude
     include PgSearch::Model
+    default_scope {order('id ASC')}
 
     def locationAddress
         self.address

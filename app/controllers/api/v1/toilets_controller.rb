@@ -19,16 +19,23 @@ class Api::V1::ToiletsController < ApplicationController
         render json: {toilets: toilets, lastPage: lastPage, neighborhoods: neighborhoods}
     end
 
-     
     def create
-    toilet = Toilet.create(toiletParams)
-    render json: toilet
+        toilet = Toilet.create(toiletParams)
+        render json: toilet
+    end
+    require "byebug"
+    def update
+        toilet = Toilet.find(params[:id])
+        # byebug
+        # toilet = toilet.update(params[:toilet].permit(:likes))
+        toilet.update(toiletParams)
+        render json: toilet
     end
 
     private
 
     def toiletParams
-        params.permit(:name, :location, :open_year_round, :handicap_accessible, :borough, :likes, :latitude, :longitude, :address, :neighborhood, :image)
+        params.require(:toilet).permit(:name, :location, :open_year_round, :handicap_accessible, :borough, :likes, :latitude, :longitude, :address, :neighborhood, :image)
     end
 
 end
