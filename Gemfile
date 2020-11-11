@@ -51,3 +51,7 @@ gem "will_paginate", "~> 3.3"
 # gem "api-pagination", "~> 4.8"
 
 gem "pg_search", "~> 2.3"
+
+# gem "google_search", "~> 1.2"
+
+# gem "image_scraper", "~> 0.1.8"
