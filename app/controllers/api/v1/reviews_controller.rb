@@ -15,6 +15,12 @@ class Api::V1::ReviewsController < ApplicationController
     render json: review
   end
 
+  def destroy
+    review = Review.find(params[:id])
+    review.delete
+    render json: {}
+  end
+
   private
 
   def reviewParams
