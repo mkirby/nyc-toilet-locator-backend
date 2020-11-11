@@ -10,9 +10,6 @@ class Toilet < ApplicationRecord
 
     pg_search_scope :search, against: [
         :borough,
-        :handicap_accessible,
-        :open_year_round
+        :neighborhood
     ]
-
-
 end
