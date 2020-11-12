@@ -1,7 +1,9 @@
 class Toilet < ApplicationRecord
     has_many :reviews
+    
     geocoded_by :locationAddress
     reverse_geocoded_by :latitude, :longitude
+
     include PgSearch::Model
     default_scope {order('id ASC')}
 
@@ -13,4 +15,8 @@ class Toilet < ApplicationRecord
         :borough,
         :neighborhood
     ]
+
+    # def getReviews
+    #     reviews = self.reviews
+    # end
 end
