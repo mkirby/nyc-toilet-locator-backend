@@ -15,8 +15,4 @@ class Toilet < ApplicationRecord
         :borough,
         :neighborhood
     ]
-
-    # def getReviews
-    #     reviews = self.reviews
-    # end
 end
