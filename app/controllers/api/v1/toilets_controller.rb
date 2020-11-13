@@ -30,6 +30,14 @@ class Api::V1::ToiletsController < ApplicationController
         render json: toilet
     end
 
+    def toilets_near_user
+        toilets = Toilet.near([params[:lat], params[:long]], 1).paginate(page: params[:page], per_page: 8)
+        neighborhoods = Toilet.all.map{|toilet| toilet.neighborhood}.uniq.sort
+        lastPage = toilets.total_pages
+        serialized_toilets = toilets.map { |t| ToiletSerializer.new(t) }
+        render json: {toilets: serialized_toilets, lastPage: lastPage, neighborhoods: neighborhoods}
+    end
+
     private
 
     def toiletParams
